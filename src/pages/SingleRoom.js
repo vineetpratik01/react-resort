@@ -36,6 +36,7 @@ static contextType = RoomContext;
         const {name,description,capacity,size,price,extras,breakfast,pets,images} = room
         console.log(images[0])
         return (
+            <>
             <StyledHero img={images[0] || this.state.defaultBcg}>
                 
                 {/* <Hero hero='roomsHero'> */}
@@ -46,6 +47,15 @@ static contextType = RoomContext;
                 </Banner>
             {/* </Hero> */}
             </StyledHero>
+
+            <section className='single-room'>
+                <div className="single-room-images">
+                    {images.map((item,index) => {
+                       return <img key={index} src={item} alt={name}/>
+                    })}
+                </div>
+            </section>
+            </>
             
         )
     }
