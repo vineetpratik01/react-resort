@@ -71,10 +71,23 @@ export default class RoomProvider extends Component {
             rooms,type,capacity,price,minSize,maxSize,breakfast,pets
         } = this.state
 
+        //all the rooms
         let tempRooms = [...rooms];
+
+        //transform values
+        capacity = parseInt(capacity)
+        
+        //filter byt type
         if(type !== 'all'){
             tempRooms = tempRooms.filter(
                 room => room.type === type
+            )
+        }
+
+        //filter by capacity
+        if(capacity !== 1){
+            tempRooms = tempRooms.filter(
+                room => room.capacity >= capacity
             )
         }
 
