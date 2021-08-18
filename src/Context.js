@@ -31,6 +31,7 @@ export default class RoomProvider extends Component {
             featuredRooms,
             sortedRooms:rooms,
             loading:false,
+            price:maxPrice,
             maxPrice,
             maxSize
         });
@@ -41,7 +42,7 @@ export default class RoomProvider extends Component {
             let id = item.sys.id
             let images = item.fields.images.map( image => image.fields.file.url)
             let room = {...item.fields,images,id}
-            return room
+            return room;
         })
         return tempItems;
     }
@@ -55,16 +56,15 @@ export default class RoomProvider extends Component {
 
     handleChange = event => {
         const target = event.target
-        
-        const value = event.type === 
+        const value = target.type === 
         'checkbox' ? target.checked : target.value
         
-        const name = event.target.name
+        const name = target.name
 
         this.setState({
             [name]:value
-        },this.filterRooms)
-    };
+        },this.filterRooms
+    )};
 
     filterRooms =  () => {
         let {
@@ -75,9 +75,10 @@ export default class RoomProvider extends Component {
         let tempRooms = [...rooms];
 
         //transform values
-        capacity = parseInt(capacity)
+        capacity = parseInt(capacity);
+        price = parseInt(price);
         
-        //filter byt type
+        //filter by type
         if(type !== 'all'){
             tempRooms = tempRooms.filter(
                 room => room.type === type
@@ -91,6 +92,32 @@ export default class RoomProvider extends Component {
             )
         }
 
+        //filter by price
+        tempRooms = tempRooms.filter(
+            room => room.price <= price)
+
+        // //filter by size
+        tempRooms = tempRooms.filter(
+            room => 
+            (room.size >= room.minSize 
+            &&
+            room.size <= room.maxSize )
+        )
+
+        
+    //     //filter by breakfast
+        if (breakfast) {
+        tempRooms = tempRooms.filter(room => room.breakfast === true);
+      }
+
+        //filter by pets
+        if(pets){
+            tempRooms = tempRooms.filter(
+                room => room.pets === true
+            )
+        }
+
+        //change state
         this.setState({
             sortedRooms:tempRooms
         })
@@ -98,7 +125,8 @@ export default class RoomProvider extends Component {
 
     render() {
         return (
-            <RoomContext.Provider value={{
+            <RoomContext.Provider 
+            value={{
                 ...this.state,
                 getRoom:this.getRoom,
                 handleChange:this.handleChange}}
@@ -110,6 +138,7 @@ export default class RoomProvider extends Component {
 }
 
 const RoomConsumer=RoomContext.Consumer;
+export {RoomProvider,RoomConsumer,RoomContext};
 
 export function withRoomConsumer(Component){
     return function ConsumerWrapper(props){
@@ -119,4 +148,4 @@ export function withRoomConsumer(Component){
     }
 }
 
-export {RoomProvider,RoomConsumer,RoomContext};
+
