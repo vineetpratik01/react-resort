@@ -99,9 +99,9 @@ export default class RoomProvider extends Component {
         // //filter by size
         tempRooms = tempRooms.filter(
             room => 
-            (room.size >= room.minSize 
+            (room.size >= minSize 
             &&
-            room.size <= room.maxSize )
+            room.size <= maxSize )
         )
 
         
