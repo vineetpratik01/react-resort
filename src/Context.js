@@ -21,6 +21,7 @@ export default class RoomProvider extends Component {
 
     componentDidMount(){
         let rooms= this.formatData(items)
+        console.log(rooms)
         let featuredRooms = rooms.filter( room => room.featured === true);
         //console.log("feat. rooms",featuredRooms);//working
         let maxPrice = Math.max(...rooms.map(item => item.price))
@@ -44,6 +45,7 @@ export default class RoomProvider extends Component {
             let room = {...item.fields,images,id}
             return room;
         })
+        console.log(tempItems)
         return tempItems;
     }
     
