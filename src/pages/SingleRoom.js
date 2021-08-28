@@ -37,7 +37,7 @@ static contextType = RoomContext;
 
         const [mainImg,...defualtImg]= images
         return (
-            <>
+            <div>
             <StyledHero img={mainImg || this.state.defaultBcg}>
                 
                 {/* <Hero hero='roomsHero'> */}
@@ -95,7 +95,7 @@ static contextType = RoomContext;
                     })}
                 </ul>
             </section>
-            </>
+            </div>
             
         )
     }

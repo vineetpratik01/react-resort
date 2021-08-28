@@ -30,9 +30,9 @@ export default class RoomProvider extends Component {
                 order:'fields.price'
             })
         
-            console.log("response",response)
+            console.log("response1",response)
         let rooms= this.formatData(response.items)
-        //console.log(rooms)
+        console.log("response2",rooms)
         let featuredRooms = rooms.filter( room => room.featured === true);
         //console.log("feat. rooms",featuredRooms);//working
         let maxPrice = Math.max(...rooms.map(item => item.price))
@@ -74,6 +74,7 @@ export default class RoomProvider extends Component {
     getRoom = slug => {
         let tempRooms = [...this.state.rooms];
         const room = tempRooms.find(room => room.slug === slug);
+        console.log(room)
         return room;
     }
 
