@@ -9,7 +9,7 @@ import {Route, Switch} from 'react-router-dom';
 
 function App() {
   return (
-    <>
+    <div>
     <Navbar/>
     <Switch>
     <Route exact path="/" component={Home}/>
@@ -17,7 +17,8 @@ function App() {
     <Route exact path="/rooms/:slug" component={SingleRoom}/>
     <Route component={Error}/>
     </Switch>
-    </>
+    
+    </div>
   );
 }
 

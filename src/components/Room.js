@@ -5,9 +5,10 @@ import PropTypes from "prop-types";
 
 
 export default function Room({room}) {
-    console.log("inside room page",room);
+    //console.log("inside room page",room);
     const { name, slug, images, price } = room;
     return (
+        <div>
         <article className="room">
            <div className="img-container" >
             <img src={images[0] || defaultImg} alt="single-room"/>
@@ -21,7 +22,8 @@ export default function Room({room}) {
            </div>
            <p className="room-info">{name}</p>
         </article>
-        
+
+        </div>
     )
 }
 
