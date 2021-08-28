@@ -7,7 +7,7 @@ import FeaturedRooms from '../components/FeaturedRooms';
 
 export default function Home() {
     return (
-        <>
+        <div>
             <Hero >
                 <Banner title="luxurious rooms" subtitle="deluxe rooms starting $299">
                     <Link to="/rooms" className="btn-primary">
@@ -18,6 +18,6 @@ export default function Home() {
             <Services/>
             <FeaturedRooms/>
             
-        </>
+        </div>
     )
 }
